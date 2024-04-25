@@ -6,10 +6,8 @@ export async function createuserHandler(req: Request<{}, {}, CreateUserInput["bo
 try {
     const user = await createUser(req.body);
     return res.send(user);
-} catch (error) {
-    console.log(error)
-    // return res.status(409).send(error.message)
-    return res.status(409).send((error as Error).message);
-
+} catch (e: any) {
+    console.log(e)
+    return res.status(409).send(e.message)
 }
 }
