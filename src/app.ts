@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.listen(port, async () => {
-    console.log('app is running')
+    console.log(`app is running at http://localhost: ${port}`)
 
    await connect();
 
