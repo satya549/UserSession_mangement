@@ -10,6 +10,7 @@ import {
   findProduct,
 } from "../service/productService";
 
+
 export async function cerateProductHandler(
   req: Request<{}, {}, CreateProductInput["body"]>,
   res: Response
@@ -22,6 +23,7 @@ export async function cerateProductHandler(
 
   return res.send(product);
 }
+
 
 export async function updateProductHandler(
   req: Request<UpdateProductInput["params"]>,
@@ -38,7 +40,7 @@ export async function updateProductHandler(
     return res.sendStatus(404);
   }
 
-  if (product.user !== userId) {
+  if ( String(product.user) !== userId) {
     return res.sendStatus(403);
   }
 
@@ -48,6 +50,7 @@ export async function updateProductHandler(
 
   return res.send(updatedProduct);
 }
+
 
 export async function getProductHandler(
   req: Request<UpdateProductInput["params"]>,
@@ -79,7 +82,7 @@ export async function deleteProductHandler(
     return res.sendStatus(404);
   }
 
-  if (product.user !== userId) {
+  if ( String(product.user) !== userId) {
     return res.sendStatus(403);
   }
 

@@ -9,8 +9,18 @@ import {
   deleteSessionsHandler,
 } from "./controller/sessionController";
 import requireUser from "./middleware/requireUser";
-import { createProductSchema, updateProductSchema } from "./schema/product.schema";
-import { cerateProductHandler, updateProductHandler } from "./controller/productController";
+import {
+  createProductSchema,
+  deleteProductSchema,
+  getProductSchema,
+  updateProductSchema,
+} from "./schema/product.schema";
+import {
+  cerateProductHandler,
+  deleteProductHandler,
+  getProductHandler,
+  updateProductHandler,
+} from "./controller/productController";
 
 function routes(app: Express) {
   app.get("/helthcheck", (req: Request, res: Response) => res.sendStatus(200));
@@ -34,9 +44,21 @@ function routes(app: Express) {
   );
 
   app.put(
-    "/api/products",
+    "/api/products/:productId",
     [requireUser, validate(updateProductSchema)],
     updateProductHandler
+  );
+
+  app.get(
+    "/api/products/:productId",
+    validate(getProductSchema),
+    getProductHandler
+  );
+
+  app.delete(
+    "/api/products/:productid",
+    [requireUser, validate(deleteProductSchema)],
+    deleteProductHandler
   );
 }
 

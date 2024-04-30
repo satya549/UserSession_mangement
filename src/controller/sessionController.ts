@@ -25,7 +25,6 @@ export async function getUserSessionsHandler(req: Request, res: Response ) {
 }
 
 
-
 export async function deleteSessionsHandler(req: Request, res: Response ) {
     const sessionId = res.locals.user.session;
 
